@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "561199678822",
+    "project_id": "dailydash-edd27",
+    "storage_bucket": "dailydash-edd27.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561199678822:android:48d2f8e2dd30e3a337f4a7",
+        "android_client_info": {
+          "package_name": "com.inline.daily_dash_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuaI5W2lznA6U8R16BBqcYYJW5rCF-VAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
