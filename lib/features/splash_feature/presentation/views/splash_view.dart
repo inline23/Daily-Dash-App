@@ -44,14 +44,16 @@ class _SplashViewState extends State<SplashView>
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * .8,
-              child: Lottie.asset(
-                'assets/images/splash1.json',
-                controller: _controller,
-                onLoaded: (composition) {
-                  _controller.forward();
-                },
+            Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * .7,
+                child: Lottie.asset(
+                  'assets/images/calendar.json',
+                  controller: _controller,
+                  onLoaded: (composition) {
+                    _controller.forward();
+                  },
+                ),
               ),
             ),
 
@@ -78,7 +80,15 @@ class _SplashViewState extends State<SplashView>
 
             const SizedBox(height: 20),
 
-            MyButton(text: 'Let\'s Get Started', onTap: () {}),
+            MyButton(
+              text: 'Let\'s Get Started',
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignInView()),
+                );
+              },
+            ),
           ],
         ),
       ),
