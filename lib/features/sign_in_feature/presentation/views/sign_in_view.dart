@@ -1,6 +1,7 @@
 import 'package:daily_dash_app/core/utils/google_button.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
+import 'package:daily_dash_app/features/home_feature/presentation/views/home_view.dart';
 import 'package:daily_dash_app/features/sign_up_feature/presentation/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -96,7 +97,16 @@ class _SignInViewState extends State<SignInView>
               ],
             ),
             const SizedBox(height: 40),
-            MyButton(text: 'Sign In', onTap: () {}),
+            MyButton(
+              text: 'Sign In',
+              onTap: () {
+                Navigator.of(
+                  context,
+                ).pushReplacement(MaterialPageRoute(builder: (context) {
+                  return HomeView();
+                }));
+              },
+            ),
             const SizedBox(height: 20),
             Row(
               children: [
