@@ -1,4 +1,6 @@
+import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
+import 'package:daily_dash_app/features/sign_in_feature/presentation/views/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -76,34 +78,7 @@ class _SplashViewState extends State<SplashView>
 
             const SizedBox(height: 20),
 
-            Container(
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: GestureDetector(
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 12,
-                      ),
-                      child: Text(
-                        'Let\'s Get Started',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            MyButton(text: 'Let\'s Get Started', onTap: () {}),
           ],
         ),
       ),
