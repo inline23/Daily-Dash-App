@@ -2,4 +2,4 @@ The "Daily Dash" project was developed to manage tasks related to the projects y
 
 start dev 6/5/2025
 
-#![Uploading New Project.png…]()
+![cover1](https://github.com/user-attachments/assets/7df3485d-a46b-40a3-a0bf-1ceda63ebba9)
