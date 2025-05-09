@@ -1,8 +1,10 @@
+import 'package:daily_dash_app/core/utils/firebase_service.dart';
 import 'package:daily_dash_app/core/utils/google_button.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
 import 'package:daily_dash_app/features/home/presentation/views/home_view.dart';
 import 'package:daily_dash_app/features/sign_up/presentation/views/sign_up_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -16,6 +18,9 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -68,6 +73,7 @@ class _SignInViewState extends State<SignInView>
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('Email'),
@@ -79,6 +85,7 @@ class _SignInViewState extends State<SignInView>
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('Password'),
@@ -99,12 +106,33 @@ class _SignInViewState extends State<SignInView>
             const SizedBox(height: 40),
             MyButton(
               text: 'Sign In',
-              onTap: () {
-                Navigator.of(
-                  context,
-                ).pushReplacement(MaterialPageRoute(builder: (context) {
-                  return HomeView();
-                }));
+              onTap: () async {
+                FirebaseService service = FirebaseService();
+                User? user = await service.login(
+                  emailController.text.trim(),
+                  passwordController.text.trim(),
+                );
+
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => HomeView(user: user),
+                    ),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Enter correct email and password",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      backgroundColor: Colors.redAccent.shade200,
+                    ),
+                  );
+                }
               },
             ),
             const SizedBox(height: 20),

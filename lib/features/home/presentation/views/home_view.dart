@@ -3,25 +3,32 @@ import 'package:daily_dash_app/features/home/presentation/views/calendar_view.da
 import 'package:daily_dash_app/features/home/presentation/views/chat_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/notification_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const HomeView({super.key , required this.user});
 
   @override
   State<HomeView> createState() => _HomeViewState();
+  final User user;
 }
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
+  late final List<Widget> screens;
 
-  List screens = [
-    HomeViewBody(),
-    ChatView(),
-    CalendarView(),
-    NotificationView(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    screens = [
+      HomeViewBody(user: widget.user),
+      ChatView(),
+      CalendarView(), 
+      NotificationView(),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {

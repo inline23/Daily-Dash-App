@@ -1,7 +1,10 @@
+import 'package:daily_dash_app/core/utils/firebase_service.dart';
 import 'package:daily_dash_app/core/utils/google_button.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
+import 'package:daily_dash_app/features/home/presentation/views/home_view.dart';
 import 'package:daily_dash_app/features/sign_in/presentation/views/sign_in_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -15,6 +18,10 @@ class SignUpView extends StatefulWidget {
 class _SignUpViewState extends State<SignUpView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void initState() {
@@ -67,6 +74,7 @@ class _SignUpViewState extends State<SignUpView>
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: nameController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('Full Name'),
@@ -78,6 +86,7 @@ class _SignUpViewState extends State<SignUpView>
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('Email'),
@@ -89,6 +98,7 @@ class _SignUpViewState extends State<SignUpView>
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text('Password'),
@@ -100,7 +110,19 @@ class _SignUpViewState extends State<SignUpView>
             ),
 
             const SizedBox(height: 40),
-            MyButton(text: 'Sign Up', onTap: () {}),
+            MyButton(text: 'Sign Up', onTap: () async {
+              FirebaseService service = FirebaseService();
+              User? user = await service.signUp(
+                nameController.text.trim(),
+                emailController.text.trim(),
+                passwordController.text.trim(),
+              );
+              if (user != null) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => HomeView(user: user,)),
+                );
+              }
+            }),
             const SizedBox(height: 20),
             Row(
               children: [

@@ -2,7 +2,9 @@ import 'package:daily_dash_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  const CustomAppBar({super.key, required this.name});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
                 style: TextStyle(color: primaryColor, fontSize: 12),
               ),
               Text(
-                'Waleed Mohammed',
+                name,
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
             ],
