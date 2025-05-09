@@ -1,5 +1,5 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/splash_feature/presentation/views/splash_view.dart';
+import 'package:daily_dash_app/features/splash/presentation/views/splash_view.dart';
 import 'package:daily_dash_app/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

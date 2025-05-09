@@ -1,5 +1,5 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/home_feature/presentation/views/widgets/completed_task_item.dart';
+import 'package:daily_dash_app/features/home/presentation/views/widgets/completed_task_item.dart';
 import 'package:flutter/material.dart';
 
 class CompletedTasksListView extends StatelessWidget {

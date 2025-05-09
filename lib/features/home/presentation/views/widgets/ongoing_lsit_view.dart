@@ -1,5 +1,5 @@
 
-import 'package:daily_dash_app/features/home_feature/presentation/views/widgets/ongoing_item.dart';
+import 'package:daily_dash_app/features/home/presentation/views/widgets/ongoing_item.dart';
 import 'package:flutter/material.dart';
 
 class OngoingListView extends StatelessWidget {

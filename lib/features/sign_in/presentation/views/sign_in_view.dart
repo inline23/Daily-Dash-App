@@ -1,18 +1,19 @@
 import 'package:daily_dash_app/core/utils/google_button.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/sign_in_feature/presentation/views/sign_in_view.dart';
+import 'package:daily_dash_app/features/home/presentation/views/home_view.dart';
+import 'package:daily_dash_app/features/sign_up/presentation/views/sign_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+class SignInView extends StatefulWidget {
+  const SignInView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  State<SignInView> createState() => _SignInViewState();
 }
 
-class _SignUpViewState extends State<SignUpView>
+class _SignInViewState extends State<SignInView>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -58,22 +59,11 @@ class _SignUpViewState extends State<SignUpView>
             ),
             const SizedBox(height: 20),
             Text(
-              'Create your account',
+              'Welcome Back',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 26,
                 fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text('Full Name'),
-                prefixIcon: Icon(Icons.person_outline, color: Colors.white),
-                labelStyle: TextStyle(color: Colors.white),
-                fillColor: Color(0xFF455A64),
-                filled: true,
               ),
             ),
             const SizedBox(height: 20),
@@ -98,9 +88,25 @@ class _SignUpViewState extends State<SignUpView>
                 prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
               ),
             ),
-
+            const SizedBox(height: 10),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('Forgot Password?', style: TextStyle(color: Colors.white)),
+              ],
+            ),
             const SizedBox(height: 40),
-            MyButton(text: 'Sign Up', onTap: () {}),
+            MyButton(
+              text: 'Sign In',
+              onTap: () {
+                Navigator.of(
+                  context,
+                ).pushReplacement(MaterialPageRoute(builder: (context) {
+                  return HomeView();
+                }));
+              },
+            ),
             const SizedBox(height: 20),
             Row(
               children: [
@@ -132,7 +138,7 @@ class _SignUpViewState extends State<SignUpView>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Already have an account?',
+                  'Don\'t have an account?',
                   style: TextStyle(color: Colors.white),
                 ),
                 GestureDetector(
@@ -141,13 +147,13 @@ class _SignUpViewState extends State<SignUpView>
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return SignInView();
+                          return SignUpView();
                         },
                       ),
                     );
                   },
                   child: Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(
                       color: primaryColor,
                       fontWeight: FontWeight.bold,

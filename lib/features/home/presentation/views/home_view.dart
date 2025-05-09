@@ -1,8 +1,8 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/home_feature/presentation/views/calendar_view.dart';
-import 'package:daily_dash_app/features/home_feature/presentation/views/chat_view.dart';
-import 'package:daily_dash_app/features/home_feature/presentation/views/notification_view.dart';
-import 'package:daily_dash_app/features/home_feature/presentation/views/widgets/home_view_body.dart';
+import 'package:daily_dash_app/features/home/presentation/views/calendar_view.dart';
+import 'package:daily_dash_app/features/home/presentation/views/chat_view.dart';
+import 'package:daily_dash_app/features/home/presentation/views/notification_view.dart';
+import 'package:daily_dash_app/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

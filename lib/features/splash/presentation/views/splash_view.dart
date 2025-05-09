@@ -1,6 +1,6 @@
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/sign_in_feature/presentation/views/sign_in_view.dart';
+import 'package:daily_dash_app/features/sign_in/presentation/views/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
