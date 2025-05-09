@@ -33,26 +33,64 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        currentIndex: currentIndex,
-        unselectedItemColor: Color(0xFF455A64),
-        backgroundColor: Color(0xFF263238),
-        selectedItemColor: primaryColor,
+      bottomNavigationBar: BottomAppBar(
+        color: const Color(0xFF263238),
         elevation: 0,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month),
-            label: 'Calendar',
+        child: SizedBox(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home, 'Home', 0),
+              _buildNavItem(Icons.chat, 'Chat', 1),
+              // Center button placeholder
+              SizedBox(width: 56),
+              _buildNavItem(Icons.calendar_month, 'Calendar', 2),
+              _buildNavItem(Icons.notification_add, 'Alerts', 3),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notification_add),
-            label: 'Notifications',
-          ),
-        ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          color: primaryColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: IconButton(
+          icon: Icon(Icons.add, color: Colors.black, size: 32),
+          onPressed: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    final bool isSelected = currentIndex == index;
+    return GestureDetector(
+      onTap: () => _onItemTapped(index),
+      child: SizedBox(
+        width: 56,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: isSelected ? primaryColor : const Color(0xFF455A64),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected ? primaryColor : const Color(0xFF455A64),
+                fontSize: 13,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
