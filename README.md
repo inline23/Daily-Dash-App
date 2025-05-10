@@ -7,3 +7,7 @@ start dev 6/5/2025
 
 Home Page UI
 ![New Project](https://github.com/user-attachments/assets/88dbc2ed-bb67-40c3-8fc8-7c022164f1b3)
+
+
+Add Task UI 10/5/2025
+![createTaskPage](https://github.com/user-attachments/assets/659a5ba4-b2df-41fd-a3f6-377f096d18b3)
