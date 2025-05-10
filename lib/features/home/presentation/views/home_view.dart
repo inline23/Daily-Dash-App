@@ -1,6 +1,7 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
 import 'package:daily_dash_app/features/home/presentation/views/calendar_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/chat_view.dart';
+import 'package:daily_dash_app/features/home/presentation/views/new_task_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/notification_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatefulWidget {
-  const HomeView({super.key , required this.user});
+  const HomeView({super.key, required this.user});
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -25,7 +26,7 @@ class _HomeViewState extends State<HomeView> {
     screens = [
       HomeViewBody(user: widget.user),
       ChatView(),
-      CalendarView(), 
+      CalendarView(),
       NotificationView(),
     ];
   }
@@ -68,7 +69,11 @@ class _HomeViewState extends State<HomeView> {
         ),
         child: IconButton(
           icon: Icon(Icons.add, color: Colors.black, size: 32),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (context) => NewTaskView()));
+          },
         ),
       ),
     );
