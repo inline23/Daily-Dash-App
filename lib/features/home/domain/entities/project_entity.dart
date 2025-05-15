@@ -1,9 +1,10 @@
+import 'package:daily_dash_app/features/home/domain/entities/to_do.dart';
 import 'package:hive/hive.dart';
 
-part 'task_entity.g.dart';
+part 'project_entity.g.dart';
 
 @HiveType(typeId: 0)
-class TaskEntity {
+class ProjectEntity {
   @HiveField(0)
   final String id;
   @HiveField(1)
@@ -16,13 +17,16 @@ class TaskEntity {
   final String dueDate;
   @HiveField(5)
   final List<String> teamMembers;
+  @HiveField(6)
+  List<ToDo> toDos;
 
-  TaskEntity({
+  ProjectEntity({
     required this.id,
     required this.title,
     required this.description,
     required this.status,
     required this.dueDate,
     required this.teamMembers,
+    required this.toDos,
   });
 }

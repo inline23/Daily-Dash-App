@@ -1,8 +1,11 @@
-import 'package:daily_dash_app/features/home/presentation/views/task_details_view.dart';
+import 'package:daily_dash_app/features/home/domain/entities/project_entity.dart';
+import 'package:daily_dash_app/features/home/presentation/views/project_details_view.dart';
 import 'package:flutter/material.dart';
 
 class OnGoingItem extends StatelessWidget {
-  const OnGoingItem({super.key});
+  const OnGoingItem({super.key, required this.project});
+
+  final ProjectEntity project;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +14,7 @@ class OnGoingItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder:
-                (context) => TaskDetailsView(title: 'Mobile App Wireframe'),
+            builder: (context) => ProjectDetailsView(project: project),
           ),
         );
       },
@@ -26,13 +28,13 @@ class OnGoingItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Left side: Task info
+            // Left side: Project info
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Mobile App Wireframe',
+                    project.title,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -69,7 +71,7 @@ class OnGoingItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Due on : 21 March',
+                    'Due to : ${project.dueDate}',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ],

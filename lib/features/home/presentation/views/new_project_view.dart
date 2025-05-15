@@ -1,4 +1,5 @@
 import 'package:daily_dash_app/core/utils/my_button.dart';
+import 'package:daily_dash_app/features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class NewTaskView extends StatelessWidget {
@@ -100,27 +101,7 @@ class _NewTaskBodyState extends State<NewTaskBody> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                ),
-
-                const SizedBox(width: 38),
-
-                Text(
-                  'Create New Task',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+            CustomAppBar(title: 'Create New Project'),
             const SizedBox(height: 39),
             Text(
               'Task Title',

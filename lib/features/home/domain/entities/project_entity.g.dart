@@ -1,35 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'task_entity.dart';
+part of 'project_entity.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaskEntityAdapter extends TypeAdapter<TaskEntity> {
+class ProjectEntityAdapter extends TypeAdapter<ProjectEntity> {
   @override
   final int typeId = 0;
 
   @override
-  TaskEntity read(BinaryReader reader) {
+  ProjectEntity read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TaskEntity(
+    return ProjectEntity(
       id: fields[0] as String,
       title: fields[1] as String,
       description: fields[2] as String,
       status: fields[3] as String,
       dueDate: fields[4] as String,
       teamMembers: (fields[5] as List).cast<String>(),
+      toDos: (fields[6] as List).cast<ToDo>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, TaskEntity obj) {
+  void write(BinaryWriter writer, ProjectEntity obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class TaskEntityAdapter extends TypeAdapter<TaskEntity> {
       ..writeByte(4)
       ..write(obj.dueDate)
       ..writeByte(5)
-      ..write(obj.teamMembers);
+      ..write(obj.teamMembers)
+      ..writeByte(6)
+      ..write(obj.toDos);
   }
 
   @override
@@ -50,7 +53,7 @@ class TaskEntityAdapter extends TypeAdapter<TaskEntity> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TaskEntityAdapter &&
+      other is ProjectEntityAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

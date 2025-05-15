@@ -110,19 +110,22 @@ class _SignUpViewState extends State<SignUpView>
             ),
 
             const SizedBox(height: 40),
-            MyButton(text: 'Sign Up', onTap: () async {
-              FirebaseService service = FirebaseService();
-              User? user = await service.signUp(
-                nameController.text.trim(),
-                emailController.text.trim(),
-                passwordController.text.trim(),
-              );
-              if (user != null) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => HomeView(user: user,)),
+            MyButton(
+              text: 'Sign Up',
+              onTap: () async {
+                FirebaseService service = FirebaseService();
+                User? user = await service.signUp(
+                  nameController.text.trim(),
+                  emailController.text.trim(),
+                  passwordController.text.trim(),
                 );
-              }
-            }),
+                if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomeView()),
+                  );
+                }
+              },
+            ),
             const SizedBox(height: 20),
             Row(
               children: [

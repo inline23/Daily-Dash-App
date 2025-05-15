@@ -107,32 +107,38 @@ class _SignInViewState extends State<SignInView>
             MyButton(
               text: 'Sign In',
               onTap: () async {
-                FirebaseService service = FirebaseService();
-                User? user = await service.login(
-                  emailController.text.trim(),
-                  passwordController.text.trim(),
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomeView(),
+                  ),
                 );
+                // FirebaseService service = FirebaseService();
+                // User? user = await service.login(
+                //   emailController.text.trim(),
+                //   passwordController.text.trim(),
+                // );
 
-                if (user != null) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => HomeView(user: user),
-                    ),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        "Enter correct email and password",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      backgroundColor: Colors.redAccent.shade200,
-                    ),
-                  );
-                }
+                // if (user != null) {
+                //   Navigator.of(context).pushReplacement(
+                //     MaterialPageRoute(
+                //       builder: (context) => HomeView(user: user),
+                //     ),
+                //   );
+                // } else {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     SnackBar(
+                //       content: Text(
+                //         "Enter correct email and password",
+                //         style: TextStyle(
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.bold,
+                //         ),
+                //       ),
+                //       backgroundColor: Colors.redAccent.shade200,
+                //     ),
+                //   );
+                // }
               },
             ),
             const SizedBox(height: 20),
