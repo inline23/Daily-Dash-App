@@ -11,3 +11,7 @@ Home Page UI
 
 Add Task UI 10/5/2025
 ![createTaskPage](https://github.com/user-attachments/assets/659a5ba4-b2df-41fd-a3f6-377f096d18b3)
+
+Profile page 15/5/2025
+<img width="394" alt="Screenshot 2025-05-15 154354" src="https://github.com/user-attachments/assets/cebde070-c01b-4e0a-8663-12822cd54093" />
+
