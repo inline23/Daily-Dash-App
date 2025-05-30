@@ -8,10 +8,12 @@ class AllTasksListView extends StatelessWidget {
     super.key,
     required this.tasks,
     required this.onDelete,
+    required this.onToggleCompletion,
   });
 
   final List<ToDo> tasks;
   final Function(ToDo) onDelete;
+  final Function(ToDo) onToggleCompletion;
 
   bool get isEmpty => tasks.isEmpty;
 
@@ -40,6 +42,7 @@ class AllTasksListView extends StatelessWidget {
               (context, index) => ToDoItem(
                 task: tasks[index],
                 onDelete: () => onDelete(tasks[index]),
+                onToggleCompletion: () => onToggleCompletion(tasks[index]),
               ),
         );
   }

@@ -1,10 +1,8 @@
-import 'package:daily_dash_app/core/utils/firebase_service.dart';
 import 'package:daily_dash_app/core/utils/google_button.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
 import 'package:daily_dash_app/features/home/presentation/views/home_view.dart';
 import 'package:daily_dash_app/features/sign_up/presentation/views/sign_up_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

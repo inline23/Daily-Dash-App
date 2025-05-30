@@ -136,6 +136,23 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                 final box = Hive.box<ProjectEntity>('projects');
                 await box.put(_currentProject.id, _currentProject);
               },
+              onToggleCompletion: (task) async {
+                final index = _currentProject.toDos.indexOf(task);
+                if (index != -1) {
+                  setState(() {
+                    // Create a new ToDo object with toggled isDone status
+                    final updatedTask = ToDo(
+                      title: task.title,
+                      isDone: !task.isDone,
+                    );
+                    _currentProject.toDos[index] = updatedTask;
+                  });
+
+                  // Save to Hive
+                  final box = Hive.box<ProjectEntity>('projects');
+                  await box.put(_currentProject.id, _currentProject);
+                }
+              },
             ),
           ),
         ],

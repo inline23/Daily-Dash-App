@@ -3,10 +3,11 @@ import 'package:daily_dash_app/features/home/domain/entities/to_do.dart';
 import 'package:flutter/material.dart';
 
 class ToDoItem extends StatelessWidget {
-  const ToDoItem({super.key, required this.task, required this.onDelete});
+  const ToDoItem({super.key, required this.task, required this.onDelete, required this.onToggleCompletion});
 
   final ToDo task;
   final VoidCallback onDelete;
+  final VoidCallback onToggleCompletion;
 
   bool get completed => task.isDone;
 
@@ -35,12 +36,12 @@ class ToDoItem extends StatelessWidget {
                   child:
                       completed
                           ? IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.check_box_outline_blank_outlined),
+                            onPressed: onToggleCompletion,
+                            icon: Icon(Icons.check_box_rounded),
                           )
                           : IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.check_box_rounded),
+                            onPressed: onToggleCompletion,
+                            icon: Icon(Icons.check_box_outline_blank_outlined),
                           ),
                 ),
               ],
