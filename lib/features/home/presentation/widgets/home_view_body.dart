@@ -1,7 +1,6 @@
-import 'package:daily_dash_app/features/home/presentation/views/widgets/completed_tasks_list_view.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/home_app_bar.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/ongoing_lsit_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/completed_tasks_list_view.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/home_app_bar.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/ongoing_lsit_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {

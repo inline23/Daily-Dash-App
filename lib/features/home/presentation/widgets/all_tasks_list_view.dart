@@ -1,6 +1,6 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/home/domain/entities/to_do.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/to_do_item.dart';
+import 'package:daily_dash_app/features/home/models/task_model.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/to_do_item.dart';
 import 'package:flutter/material.dart';
 
 class AllTasksListView extends StatelessWidget {
@@ -11,9 +11,9 @@ class AllTasksListView extends StatelessWidget {
     required this.onToggleCompletion,
   });
 
-  final List<ToDo> tasks;
-  final Function(ToDo) onDelete;
-  final Function(ToDo) onToggleCompletion;
+  final List<TaskModel> tasks;
+  final Function(TaskModel) onDelete;
+  final Function(TaskModel) onToggleCompletion;
 
   bool get isEmpty => tasks.isEmpty;
 

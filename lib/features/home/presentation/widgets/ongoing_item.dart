@@ -1,11 +1,11 @@
-import 'package:daily_dash_app/features/home/domain/entities/project_entity.dart';
+import 'package:daily_dash_app/features/home/models/project_model.dart';
 import 'package:daily_dash_app/features/home/presentation/views/project_details_view.dart';
 import 'package:flutter/material.dart';
 
 class OnGoingItem extends StatelessWidget {
   const OnGoingItem({super.key, required this.project});
 
-  final ProjectEntity project;
+  final ProjectModel project;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class OnGoingItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    project.title,
+                    project.projectTitle,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class OnGoingItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Due to : ${project.dueDate}',
+                    'Due to : ',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ],

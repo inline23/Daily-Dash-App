@@ -1,12 +1,12 @@
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/home/domain/entities/project_entity.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:daily_dash_app/features/home/models/project_model.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ProjectDetailsViewBody extends StatelessWidget {
   const ProjectDetailsViewBody({super.key, required this.project});
 
-  final ProjectEntity project;
+  final ProjectModel project;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ProjectDetailsViewBody extends StatelessWidget {
 
           const SizedBox(height: 40),
           Text(
-            project.title,
+            project.projectTitle,
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,
@@ -46,7 +46,7 @@ class ProjectDetailsViewBody extends StatelessWidget {
                       style: TextStyle(color: Colors.white.withOpacity(.4)),
                     ),
                     Text(
-                      project.dueDate,
+                      'Due to',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
@@ -65,7 +65,7 @@ class ProjectDetailsViewBody extends StatelessWidget {
           ),
           const SizedBox(height: 7),
           Text(
-            project.description,
+            project.projectDescription,
             style: TextStyle(fontSize: 16, color: Colors.white.withOpacity(.4)),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,

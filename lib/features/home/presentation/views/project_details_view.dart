@@ -1,14 +1,14 @@
 import 'package:daily_dash_app/core/utils/my_button.dart';
 import 'package:daily_dash_app/core/utils/styles.dart';
-import 'package:daily_dash_app/features/home/domain/entities/project_entity.dart';
-import 'package:daily_dash_app/features/home/domain/entities/to_do.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/all_tasks_list_view.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/project_detail_view_body.dart';
+import 'package:daily_dash_app/features/home/models/project_model.dart';
+import 'package:daily_dash_app/features/home/models/task_model.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/all_tasks_list_view.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/project_detail_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class ProjectDetailsView extends StatefulWidget {
-  final ProjectEntity project;
+  final ProjectModel project;
   const ProjectDetailsView({super.key, required this.project});
 
   @override
@@ -17,26 +17,10 @@ class ProjectDetailsView extends StatefulWidget {
 
 class _ProjectDetailsViewState extends State<ProjectDetailsView> {
   final TextEditingController _taskTitleController = TextEditingController();
-  late ProjectEntity _currentProject;
 
   @override
   void initState() {
     super.initState();
-    _loadProjectData();
-  }
-
-  Future<void> _loadProjectData() async {
-    final box = Hive.box<ProjectEntity>('projects');
-    final savedProject = box.get(widget.project.id);
-    if (savedProject != null) {
-      setState(() {
-        _currentProject = savedProject;
-      });
-    } else {
-      setState(() {
-        _currentProject = widget.project;
-      });
-    }
   }
 
   void _showAddTaskDialog() {
@@ -82,15 +66,8 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
                 onPressed: () async {
                   if (_taskTitleController.text.isNotEmpty) {
                     setState(() {
-                      _currentProject.toDos.add(
-                        ToDo(title: _taskTitleController.text, isDone: false),
-                      );
+                      widget.project.addTask(_taskTitleController.text);
                     });
-
-                    // Save to Hive
-                    final box = Hive.box<ProjectEntity>('projects');
-                    await box.put(_currentProject.id, _currentProject);
-
                     Navigator.pop(context);
                     _taskTitleController.clear();
                   }
@@ -122,35 +99,35 @@ class _ProjectDetailsViewState extends State<ProjectDetailsView> {
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: ProjectDetailsViewBody(project: _currentProject),
+            child: ProjectDetailsViewBody(project: widget.project),
           ),
           SliverToBoxAdapter(
             child: AllTasksListView(
-              tasks: _currentProject.toDos,
+              tasks: widget.project.allTasks,
               onDelete: (task) async {
                 setState(() {
-                  _currentProject.toDos.remove(task);
+                  widget.project.allTasks.remove(task);
                 });
 
                 // Save to Hive
-                final box = Hive.box<ProjectEntity>('projects');
-                await box.put(_currentProject.id, _currentProject);
+                final box = Hive.box<ProjectModel>('projects');
+                await box.put(widget.project.projectId, widget.project);
               },
               onToggleCompletion: (task) async {
-                final index = _currentProject.toDos.indexOf(task);
+                final index = widget.project.allTasks.indexOf(task);
                 if (index != -1) {
                   setState(() {
                     // Create a new ToDo object with toggled isDone status
-                    final updatedTask = ToDo(
-                      title: task.title,
+                    final updatedTask = TaskModel(
+                      taskTitle: task.taskTitle,
                       isDone: !task.isDone,
                     );
-                    _currentProject.toDos[index] = updatedTask;
+                    widget.project.allTasks[index] = updatedTask;
                   });
 
                   // Save to Hive
-                  final box = Hive.box<ProjectEntity>('projects');
-                  await box.put(_currentProject.id, _currentProject);
+                  final box = Hive.box<ProjectModel>('projects');
+                  await box.put(widget.project.projectId, widget.project);
                 }
               },
             ),

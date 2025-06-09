@@ -1,6 +1,6 @@
 import 'package:daily_dash_app/core/utils/my_button.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/custom_app_bar.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/profile_info_item.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/custom_app_bar.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/profile_info_item.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {

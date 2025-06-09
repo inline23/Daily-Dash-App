@@ -3,8 +3,7 @@ import 'package:daily_dash_app/features/home/presentation/views/calendar_view.da
 import 'package:daily_dash_app/features/home/presentation/views/chat_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/new_project_view.dart';
 import 'package:daily_dash_app/features/home/presentation/views/notification_view.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/home_view_body.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -67,7 +66,7 @@ class _HomeViewState extends State<HomeView> {
           onPressed: () {
             Navigator.of(
               context,
-            ).push(MaterialPageRoute(builder: (context) => NewTaskView()));
+            ).push(MaterialPageRoute(builder: (context) => NewProjectView()));
           },
         ),
       ),

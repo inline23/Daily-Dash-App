@@ -1,24 +1,29 @@
+import 'package:daily_dash_app/controllers/read_data_cubit/read_data_cubit.dart';
+import 'package:daily_dash_app/controllers/write_data_cubit/write_data_cubit.dart';
 import 'package:daily_dash_app/core/utils/my_button.dart';
-import 'package:daily_dash_app/features/home/presentation/views/widgets/custom_app_bar.dart';
+import 'package:daily_dash_app/features/home/models/project_model.dart';
+import 'package:daily_dash_app/features/home/presentation/views/home_view.dart';
+import 'package:daily_dash_app/features/home/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
-class NewTaskView extends StatelessWidget {
-  const NewTaskView({super.key});
+class NewProjectView extends StatelessWidget {
+  const NewProjectView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: NewTaskBody()));
+    return Scaffold(body: SafeArea(child: NewProjectBody()));
   }
 }
 
-class NewTaskBody extends StatefulWidget {
-  NewTaskBody({super.key});
+class NewProjectBody extends StatefulWidget {
+  const NewProjectBody({super.key});
 
   @override
-  State<NewTaskBody> createState() => _NewTaskBodyState();
+  State<NewProjectBody> createState() => _NewProjectBodyState();
 }
 
-class _NewTaskBodyState extends State<NewTaskBody> {
+class _NewProjectBodyState extends State<NewProjectBody> {
   final TextEditingController taskTitleController = TextEditingController();
   final TextEditingController taskDetailsController = TextEditingController();
 
@@ -114,6 +119,8 @@ class _NewTaskBodyState extends State<NewTaskBody> {
             const SizedBox(height: 10),
             TextField(
               controller: taskTitleController,
+              onChanged:
+                  (value) => WriteDataCubit.get(context).updateTitle(value),
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelStyle: TextStyle(color: Colors.white),
@@ -133,6 +140,9 @@ class _NewTaskBodyState extends State<NewTaskBody> {
             const SizedBox(height: 30),
             TextField(
               maxLines: 3,
+              onChanged:
+                  (value) =>
+                      WriteDataCubit.get(context).updateDescription(value),
               controller: taskDetailsController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -227,7 +237,18 @@ class _NewTaskBodyState extends State<NewTaskBody> {
               ),
             ),
             const SizedBox(height: 38),
-            MyButton(onTap: () {}, text: "Create"),
+            MyButton(
+              onTap: () {
+                if (taskTitleController.text.isNotEmpty &&
+                    taskDetailsController.text.isNotEmpty) {
+                  WriteDataCubit.get(context).addProject();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HomeView()),
+                  );
+                }
+              },
+              text: "Create",
+            ),
           ],
         ),
       ),
